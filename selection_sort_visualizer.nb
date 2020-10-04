@@ -1,0 +1,438 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18881,        430]
+NotebookOptionsPosition[     17959,        408]
+NotebookOutlinePosition[     18332,        424]
+CellTagsIndexPosition[     18289,        421]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[StyleBox["MATH299M/CMSC389W - Visualization through Mathematica",
+ FontSize->36,
+ FontColor->RGBColor[1, 0.5, 0]]], "Text",
+ CellChangeTimes->{
+  3.794931088013441*^9},ExpressionUUID->"53af7599-deab-4296-8ba1-\
+51451a503b17"],
+
+Cell[TextData[{
+ StyleBox["Homework 6: Selection Sort",
+  FontSize->36,
+  FontColor->RGBColor[0, 0, 1]],
+ StyleBox["\n",
+  FontSize->36],
+ StyleBox["Aviv Elazar-Mittelman\n\n",
+  FontSize->24]
+}], "Text",
+ CellChangeTimes->{{3.794931116962665*^9, 3.7949311314071245`*^9}, {
+  3.794955767269216*^9, 3.79495577162405*^9}, {3.794959538124082*^9, 
+  3.7949595494607954`*^9}, {3.7949595824478736`*^9, 3.794959582641122*^9}, {
+  3.79551884506073*^9, 
+  3.795518849515503*^9}},ExpressionUUID->"d9b0d444-e94b-479a-bc46-\
+6c213996ac1b"],
+
+Cell["\<\
+I decided to try to create a visualization for the Selection Sort algorithm. \
+I decided to use the minimum variant of selection sort. In order to show the \
+steps of selection sort, I create a color array at each step to show the \
+current values being compared.\
+\>", "Text",
+ CellChangeTimes->{{3.795537660231389*^9, 3.7955377290713463`*^9}, {
+  3.795537790783656*^9, 
+  3.795537797535216*^9}},ExpressionUUID->"ab099240-2795-4724-ab72-\
+3481ffb81f5b"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"selection", "[", "l_", "]"}], ":=", "\[IndentingNewLine]", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"list", "=", "l"}], ",", 
+        RowBox[{"len", "=", 
+         RowBox[{"Length", "[", "l", "]"}]}], ",", " ", "min", ",", " ", 
+        "temp", ",", " ", "i", ",", " ", "j", ",", " ", "steps"}], "}"}], ",",
+       "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"colors", "=", 
+        RowBox[{"ConstantArray", "[", 
+         RowBox[{"Black", ",", " ", "len"}], "]"}]}], ";", " ", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Start", " ", "with", " ", "all", " ", "colors", " ", "black", " ", 
+         "since", " ", "havent", " ", "started", " ", 
+         RowBox[{"comparing", "."}]}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"colors", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "=", "Blue"}], ";", " ", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Blue", " ", "represents", " ", "the", " ", "current", " ", 
+         "minimum"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"steps", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{"list", ",", "colors"}], "}"}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"i", "=", "1"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{"i", "<=", "len"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"min", "=", "i"}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"colors", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "=", "Blue"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"j", "=", 
+           RowBox[{"i", "+", "1"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"While", "[", 
+           RowBox[{
+            RowBox[{"j", "<=", "len"}], ",", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"colors", "[", 
+               RowBox[{"[", "j", "]"}], "]"}], "=", "Red"}], ";", " ", 
+             RowBox[{"(*", 
+              RowBox[{
+              "Red", " ", "represents", " ", "the", " ", "current", " ", 
+               "value", " ", "comparing", " ", "to", " ", "minimum"}], "*)"}],
+              "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"j", "-", "1"}], "\[NotEqual]", " ", "min"}], ",", 
+               RowBox[{
+                RowBox[{"colors", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"j", "-", "1"}], "]"}], "]"}], "=", "Black"}]}], 
+              "]"}], ";", "\[IndentingNewLine]", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"steps", ",", 
+               RowBox[{"{", 
+                RowBox[{"list", ",", "colors"}], "}"}]}], "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"list", "[", 
+                 RowBox[{"[", "min", "]"}], "]"}], ">", 
+                RowBox[{"list", "[", 
+                 RowBox[{"[", "j", "]"}], "]"}]}], ",", " ", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"colors", "[", 
+                  RowBox[{"[", "min", "]"}], "]"}], "=", "Black"}], ";", 
+                RowBox[{"min", "=", "j"}], ";", 
+                RowBox[{
+                 RowBox[{"colors", "[", 
+                  RowBox[{"[", "min", "]"}], "]"}], "=", "Blue"}]}]}], "]"}], 
+             ";", "\[IndentingNewLine]", 
+             RowBox[{"AppendTo", "[", 
+              RowBox[{"steps", ",", 
+               RowBox[{"{", 
+                RowBox[{"list", ",", "colors"}], "}"}]}], "]"}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"j", "++"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"temp", "=", 
+           RowBox[{"list", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"list", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "=", 
+           RowBox[{"list", "[", 
+            RowBox[{"[", "min", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"list", "[", 
+            RowBox[{"[", "min", "]"}], "]"}], "=", "temp"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Set", " ", "min", " ", "value", " ", "to", " ", "grey", " ", 
+            "since", " ", "already", " ", 
+            RowBox[{"swapped", "."}]}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"colors", " ", "=", " ", 
+           RowBox[{"Flatten", "[", 
+            RowBox[{"Append", "[", 
+             RowBox[{
+              RowBox[{"ConstantArray", "[", 
+               RowBox[{"Gray", ",", 
+                RowBox[{"len", "-", 
+                 RowBox[{"(", 
+                  RowBox[{"len", "-", "i"}], ")"}]}]}], "]"}], ",", " ", 
+              RowBox[{"ConstantArray", "[", 
+               RowBox[{"Black", ",", 
+                RowBox[{"len", "-", "i"}]}], "]"}]}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"steps", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"list", ",", "colors"}], "}"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"i", "++"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"steps", ",", 
+         RowBox[{"Length", "[", "steps", "]"}]}], "}"}]}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.795520936007826*^9, 3.7955209511236286`*^9}, 
+   3.79552098660211*^9, {3.7955210340112867`*^9, 3.795521093438475*^9}, {
+   3.79552146091245*^9, 3.795521469925791*^9}, {3.795521553309077*^9, 
+   3.7955216194368105`*^9}, {3.7955219297921257`*^9, 
+   3.7955219746347866`*^9}, {3.7955220202921963`*^9, 
+   3.7955222055211554`*^9}, {3.7955222484823723`*^9, 
+   3.7955222933993635`*^9}, {3.795522345536809*^9, 3.7955223459159217`*^9}, {
+   3.795522508485133*^9, 3.7955225531140103`*^9}, {3.795522587632688*^9, 
+   3.7955225977104373`*^9}, {3.7955226591663785`*^9, 
+   3.7955226598843307`*^9}, {3.795522731959506*^9, 3.795522786723364*^9}, {
+   3.7955228471763363`*^9, 3.7955228663094134`*^9}, {3.7955232613869677`*^9, 
+   3.795523262266637*^9}, {3.7955233351945534`*^9, 3.795523413931696*^9}, {
+   3.79552376812654*^9, 3.795523794281054*^9}, {3.795523874682806*^9, 
+   3.79552388477594*^9}, {3.7955240015869513`*^9, 3.795524003041044*^9}, {
+   3.7955241865509267`*^9, 3.7955241903951445`*^9}, {3.7955246366727753`*^9, 
+   3.7955246450376816`*^9}, {3.795524682148124*^9, 3.7955247202682424`*^9}, {
+   3.7955247506053467`*^9, 3.795524799667939*^9}, {3.795524856657064*^9, 
+   3.795524858913103*^9}, {3.7955249031595254`*^9, 3.7955249085981207`*^9}, {
+   3.7955250334002237`*^9, 3.7955250571940093`*^9}, {3.795525876460353*^9, 
+   3.7955258929746947`*^9}, {3.7955271395128317`*^9, 3.7955271400407295`*^9}, 
+   3.7955272601390266`*^9, {3.795527307365827*^9, 3.7955273546030493`*^9}, {
+   3.795527480217002*^9, 3.7955275257138824`*^9}, {3.7955279522877927`*^9, 
+   3.795527986047902*^9}, {3.7955282157318115`*^9, 3.795528217610733*^9}, {
+   3.7955317187205772`*^9, 3.7955317210347786`*^9}, {3.7955317587504253`*^9, 
+   3.79553186313229*^9}, {3.795531898898881*^9, 3.795532061445178*^9}, {
+   3.7955323810643415`*^9, 3.79553243529158*^9}, {3.7955324774639964`*^9, 
+   3.7955324936867237`*^9}, {3.795532606302124*^9, 3.7955328883006096`*^9}, {
+   3.795533113640812*^9, 3.7955331272228985`*^9}, {3.7955331753445606`*^9, 
+   3.7955332962437134`*^9}, {3.795533405484803*^9, 3.7955334101475873`*^9}, {
+   3.7955336005073223`*^9, 3.795533619964942*^9}, {3.795534012815094*^9, 
+   3.795534025988706*^9}, {3.7955340596566267`*^9, 3.795534105168873*^9}, {
+   3.7955341374730864`*^9, 3.7955341961518974`*^9}, {3.7955343612728024`*^9, 
+   3.7955343919375453`*^9}, {3.795534445595527*^9, 3.7955344896511817`*^9}, {
+   3.795534609117407*^9, 3.7955346104551926`*^9}, {3.7955348716581554`*^9, 
+   3.795534872227709*^9}, 3.7955350251182537`*^9, {3.7955350604260654`*^9, 
+   3.795535083265768*^9}, {3.7955351543648405`*^9, 3.795535190928648*^9}, {
+   3.7955356569129486`*^9, 3.795535665857585*^9}, 3.7955357888318634`*^9, {
+   3.795535860924071*^9, 3.795535870677018*^9}, 3.7955364327335052`*^9, {
+   3.795536527065544*^9, 3.7955365289557095`*^9}, 3.7955366328572454`*^9, 
+   3.7955367838357697`*^9, {3.7955369636678534`*^9, 3.7955369910348873`*^9}, 
+   3.795537245643754*^9, {3.795537285924283*^9, 3.7955372976979094`*^9}, {
+   3.795537424868307*^9, 3.795537440129484*^9}, {3.7955375275825295`*^9, 
+   3.7955375494439206`*^9}, {3.7955380502069807`*^9, 
+   3.7955381313197417`*^9}},ExpressionUUID->"eee8c1a3-5e89-4ade-8441-\
+e70c87a8865c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"values", "=", 
+       RowBox[{
+        RowBox[{"selection", "[", 
+         RowBox[{"Flatten", "@", 
+          RowBox[{"ToExpression", "@", 
+           RowBox[{"StringSplit", "[", 
+            RowBox[{"list", ",", "\"\<,\>\""}], "]"}]}]}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Show", "[", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "I", " ", "use", " ", "a", " ", "barchart", " ", "to", " ", "show", 
+        " ", "each", " ", "of", " ", "the", " ", 
+        RowBox[{"values", "."}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"BarChart", "[", " ", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"values", "[", 
+         RowBox[{"[", 
+          RowBox[{"slider", ",", "1"}], "]"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ChartLabels", "\[Rule]", 
+         RowBox[{"values", "[", 
+          RowBox[{"[", 
+           RowBox[{"slider", ",", "1"}], "]"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ChartStyle", "\[Rule]", 
+         RowBox[{"values", "[", 
+          RowBox[{"[", 
+           RowBox[{"slider", ",", "2"}], "]"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ChartLegends", "\[Rule]", 
+         RowBox[{"SwatchLegend", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"Red", ",", "Blue", ",", "Black", ",", "Gray"}], "}"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<Currently comparing with\>\"", ",", " ", 
+             "\"\<Current Minimum\>\"", ",", " ", "\"\<Other Value\>\"", ",", 
+             " ", "\"\<Already Sorted\>\""}], "}"}]}], "]"}]}]}], 
+       "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"list", ",", "\"\<10,2,4,2,3,6,6,7,4,3\>\"", ",", " ", 
+     RowBox[{
+      RowBox[{"InputField", "[", 
+       RowBox[{"#", ",", "String"}], "]"}], "&"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "slider", ",", " ", "1", ",", " ", "\"\<sort progression: \>\""}], 
+      "}"}], ",", " ", "1", ",", " ", 
+     RowBox[{
+      RowBox[{"selection", "[", 
+       RowBox[{"Flatten", "@", 
+        RowBox[{"ToExpression", "@", 
+         RowBox[{"StringSplit", "[", 
+          RowBox[{"list", ",", "\"\<,\>\""}], "]"}]}]}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}], ",", "1"}], "}"}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->CompressedData["
+1:eJwdzlkowwEABvA1ozB5cTUZKyUp1+rvynIUiRyzBw+jzTFbiVFK42GlNEdi
+I1KGKMeTLaWZ1jDMrYZWVlt4wVxzDDX5f/+Hr9/T1/dx6tv4TXQajRZHBpaP
+lOhExe78zy7hBiS8vWaY1qe0QkHMyCmMujikZMhW3DCZOHyCC76ZT7gXfvkH
+te2FQWJSc4uacjmrLQJ+uJtjYaTHVAavvJ1VkH7eLoSp2XUd0Hoyzm0kNfbH
+Z0LB23cO5N5282C6kFMMe3JFpVDrCK6FA9VMCVS9i1OaSGsK1ARU/O6XQuL6
+tAa+B6q6IDvRXwH3rOkaCWnR9iLli/xgAt6Eu6bg/dbLLGxlOeehfHJ6CS55
+E1Yg8+HYCL8e1JvQs6rdgXcGlwWO0eePqP7z4gnU8y12yOiwUToUeY+wknv9
+CpWhtkYpaUCDRwotYWuDUKIJGYU8eqoeDvsNUc4ludfhlG7yGEb7nP4y7Jyx
+AmAGW7Aro34Y7NDE9L3BaU3FD/wHMhIADg==
+  "],
+ CellLabel->
+  "In[169]:=",ExpressionUUID->"21652204-0d45-4638-b4d6-29ba99742cce"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`list$$ = 
+    "10,2,4,2,3,6,6,7,4,3", $CellContext`slider$$ = 101, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`list$$], "10,2,4,2,3,6,6,7,4,3", 
+      InputField[#, String]& }, {{
+       Hold[$CellContext`slider$$], 1, "sort progression: "}, 1, 
+      Dynamic[
+       Part[
+        $CellContext`selection[
+         Flatten[
+          ToExpression[
+           StringSplit[$CellContext`list$$, ","]]]], 2]], 1}}, 
+    Typeset`size$$ = {592., {123., 129.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`list$359787$$ = 0, $CellContext`slider$359788$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`list$$ = 
+        "10,2,4,2,3,6,6,7,4,3", $CellContext`slider$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`list$$, $CellContext`list$359787$$, 0], 
+        Hold[$CellContext`slider$$, $CellContext`slider$359788$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> With[{$CellContext`values$ = Part[
+           $CellContext`selection[
+            Flatten[
+             ToExpression[
+              StringSplit[$CellContext`list$$, ","]]]], 1]}, 
+        Show[
+         BarChart[
+          Part[$CellContext`values$, $CellContext`slider$$, 1], ChartLabels -> 
+          Part[$CellContext`values$, $CellContext`slider$$, 1], ChartStyle -> 
+          Part[$CellContext`values$, $CellContext`slider$$, 2], ChartLegends -> 
+          SwatchLegend[{Red, Blue, Black, Gray}, {
+            "Currently comparing with", "Current Minimum", "Other Value", 
+             "Already Sorted"}]]]], 
+      "Specifications" :> {{$CellContext`list$$, "10,2,4,2,3,6,6,7,4,3", 
+         InputField[#, String]& }, {{$CellContext`slider$$, 1, 
+          "sort progression: "}, 1, 
+         Dynamic[
+          Part[
+           $CellContext`selection[
+            Flatten[
+             ToExpression[
+              StringSplit[$CellContext`list$$, ","]]]], 2]], 1}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{647., {185., 192.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7955346653064117`*^9, {3.795534943751836*^9, 3.7955349852549105`*^9}, 
+   3.7955350954251695`*^9, 3.7955351997206163`*^9, 3.7955353681740503`*^9, {
+   3.795535438563182*^9, 3.795535463043386*^9}, {3.795535916175991*^9, 
+   3.7955359214275584`*^9}, 3.7955361063347483`*^9, 3.79553644665521*^9, 
+   3.795536602283843*^9, {3.79553668122725*^9, 3.7955366977438126`*^9}, 
+   3.79553680341078*^9, 3.7955373527845087`*^9, 3.7955376101729574`*^9, 
+   3.7955378682016163`*^9},
+ CellLabel->
+  "Out[169]=",ExpressionUUID->"e9c40c78-4b4a-4c37-ae71-4a77221200aa"]
+}, Open  ]],
+
+Cell["\<\
+You can see in this example that the sort is stable due to the 2s being in \
+the same order as they were originally.\
+\>", "Text",
+ CellChangeTimes->{{3.795538017929738*^9, 
+  3.7955380396587477`*^9}},ExpressionUUID->"7c84e07c-3dfc-4954-b197-\
+698f2e25fda0"]
+},
+WindowSize->{1620, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 239, 5, 67, "Text",ExpressionUUID->"53af7599-deab-4296-8ba1-51451a503b17"],
+Cell[800, 27, 527, 14, 176, "Text",ExpressionUUID->"d9b0d444-e94b-479a-bc46-6c213996ac1b"],
+Cell[1330, 43, 464, 9, 65, "Text",ExpressionUUID->"ab099240-2795-4724-ab72-3481ffb81f5b"],
+Cell[1797, 54, 8955, 181, 671, "Input",ExpressionUUID->"eee8c1a3-5e89-4ade-8441-e70c87a8865c"],
+Cell[CellGroupData[{
+Cell[10777, 239, 3383, 82, 363, "Input",ExpressionUUID->"21652204-0d45-4638-b4d6-29ba99742cce"],
+Cell[14163, 323, 3509, 74, 398, "Output",ExpressionUUID->"e9c40c78-4b4a-4c37-ae71-4a77221200aa"]
+}, Open  ]],
+Cell[17687, 400, 268, 6, 39, "Text",ExpressionUUID->"7c84e07c-3dfc-4954-b197-698f2e25fda0"]
+}
+]
+*)
+

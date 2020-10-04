@@ -1,0 +1,342 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14758,        334]
+NotebookOptionsPosition[     13931,        313]
+NotebookOutlinePosition[     14304,        329]
+CellTagsIndexPosition[     14261,        326]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Midterm Project\n",
+  FontSize->36,
+  FontColor->RGBColor[1, 0, 0]],
+ StyleBox["Aviv Elazar-Mittelman",
+  FontSize->36,
+  FontColor->RGBColor[1, 0, 1]]
+}], "Text",
+ CellChangeTimes->{{3.7967605502190533`*^9, 
+  3.7967606268098397`*^9}},ExpressionUUID->"8563cebc-ad38-46d5-b984-\
+342dd6503a97"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7967606551731234`*^9, 
+  3.7967606556675186`*^9}},ExpressionUUID->"4465c153-4566-47a3-865b-\
+d6892acd720c"],
+
+Cell["\<\
+For my midterm project, I decided to create a model that visualizes the \
+result of multiplying  vectors by any 2D transformation matrix. (2D since I \
+could not find an alternative for Locators in 3D).\
+\>", "Text",
+ CellChangeTimes->{{3.7967725776090803`*^9, 3.796772591700613*^9}, {
+   3.7968464692991877`*^9, 3.7968464698375983`*^9}, {3.796930355120641*^9, 
+   3.796930436883986*^9}, {3.796933840994474*^9, 3.7969338639699197`*^9}, 
+   3.7969338972241144`*^9},ExpressionUUID->"b4a94bc4-de99-48ff-b28f-\
+cd4d99b84130"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Style", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Row", "[", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{"Transformation", " ", "Matrix"}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"MatrixForm", " ", "@", " ", 
+             RowBox[{"ToExpression", "@", "matrix"}]}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+            "Matrix", " ", "consisting", " ", "of", " ", "vectors", " ", "we",
+              " ", "want", " ", "to", " ", "transform"}], "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{"MatrixForm", " ", "@", " ", 
+            RowBox[{"Transpose", "@", "points"}]}], ",", 
+           "\[IndentingNewLine]", "\"\<=\>\"", ",", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{"Resulting", " ", 
+             RowBox[{"vectors", "."}]}], "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"MatrixForm", "@", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"ToExpression", "@", "matrix"}], ".", 
+              RowBox[{"Transpose", "@", "points"}]}], ")"}]}]}], 
+          "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"FontSize", "\[Rule]", "20"}]}], "\[IndentingNewLine]", "]"}],
+       ",", "\[IndentingNewLine]", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{"Show", "[", "\[IndentingNewLine]", 
+         RowBox[{"Graphics", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{"Thick", ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Tooltip", "@", 
+                RowBox[{"Arrow", "[", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "#"}], "}"}], 
+                 "]"}]}], "&"}], "/@", "points"}], ",", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+              "Dotted", ",", "\[IndentingNewLine]", "Red", ",", 
+               "\[IndentingNewLine]", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Tooltip", "@", 
+                  RowBox[{"Arrow", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"ToExpression", "@", "matrix"}], ".", "#"}]}], 
+                    "}"}], "]"}]}], "&"}], "/@", "points"}]}], 
+              "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "}"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{"Axes", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"GridLinesStyle", "\[Rule]", 
+            RowBox[{"Directive", "[", 
+             RowBox[{"Gray", ",", " ", "Dashed"}], "]"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"PlotRange", "\[Rule]", "r"}]}], "\[IndentingNewLine]", 
+          "]"}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "}"}], 
+       "]"}]}], "\[IndentingNewLine]", "}"}], "]"}], "\[IndentingNewLine]", 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", " ", "8", ",", " ", "\"\<Zoom\>\""}], "}"}], ",", 
+     ".2", ",", "30"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"points", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"2", ",", "3"}], "}"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "1"}], ",", 
+           RowBox[{"-", "3"}]}], "}"}]}], "}"}]}], "}"}], ",", " ", "Locator",
+      ",", 
+     RowBox[{"LocatorAutoCreate", "->", "True"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "matrix", ",", " ", "\"\<{{0,-1},{1,0}}\>\"", ",", 
+       "\"\<Transformation Matrix\>\""}], "}"}], ",", " ", 
+     RowBox[{
+      RowBox[{"InputField", "[", 
+       RowBox[{"#", ",", "String"}], "]"}], "&"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "matrix", ",", "\"\<{{0,-1},{1,0}}\>\"", ",", "\"\<Examples\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+       "\"\<{{Cos[\[Pi]/6],-Sin[\[Pi]/6]},{Sin[\[Pi]/6],Cos[\[Pi]/6]}}\>\"", 
+        "\[Rule]", " ", "\"\<Rotate 30 Degrees\>\""}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"\"\<{{2,0},{0,2}}\>\"", "\[Rule]", "\"\<Double\>\""}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<{{-1,0},{0,1}}\>\"", "\[Rule]", 
+        "\"\<Reflection around Y-Axis\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+       "\"\<{{1,0},{0,-1}}\>\"", "\[Rule]", 
+        "\"\<Reflection around X-Axis\>\""}], ",", "\[IndentingNewLine]", 
+       RowBox[{"\"\<{{1,1.5},{0,1}}\>\"", "\[Rule]", "\"\<Sheering\>\""}]}], 
+      "\[IndentingNewLine]", "}"}]}], "}"}]}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.796916472968914*^9, 3.7969165362712107`*^9}, {
+   3.7969165753224535`*^9, 3.7969165774344916`*^9}, {3.796916654948436*^9, 
+   3.7969166561289196`*^9}, {3.7969166932671895`*^9, 
+   3.7969167072620883`*^9}, {3.7969170305857058`*^9, 3.796917064513997*^9}, {
+   3.796917123162509*^9, 3.796917134381946*^9}, {3.7969212912407355`*^9, 
+   3.79692136091387*^9}, {3.7969218795112505`*^9, 3.7969219341083307`*^9}, {
+   3.7969221553288097`*^9, 3.796922157305916*^9}, {3.796923008298319*^9, 
+   3.7969230291317387`*^9}, {3.796924704517865*^9, 3.796924711516484*^9}, {
+   3.7969295119282837`*^9, 3.7969295382270107`*^9}, {3.7969296140387144`*^9, 
+   3.7969296185173492`*^9}, {3.7969298125594497`*^9, 
+   3.7969298151509123`*^9}, {3.796929864495154*^9, 3.7969298728909445`*^9}, {
+   3.7969299903581166`*^9, 3.7969300256011486`*^9}, {3.796930061384779*^9, 
+   3.7969300809480877`*^9}, 3.796930267273814*^9, {3.796930463991671*^9, 
+   3.7969305932607126`*^9}, {3.796930663919438*^9, 3.796930738143261*^9}, {
+   3.7969307799153037`*^9, 3.796930780227496*^9}, {3.796930953603871*^9, 
+   3.796930973701731*^9}, {3.7969311821375103`*^9, 3.796931196328188*^9}, {
+   3.7969326418717413`*^9, 3.7969326535624666`*^9}, {3.7969327078286977`*^9, 
+   3.7969327811292877`*^9}, {3.796932855942339*^9, 3.796932869408573*^9}, {
+   3.796932926923208*^9, 3.7969329521581182`*^9}, {3.7969329901490283`*^9, 
+   3.7969330319657063`*^9}, {3.7969331076065664`*^9, 
+   3.7969331592356806`*^9}, {3.796934053709634*^9, 3.796934097626911*^9}, {
+   3.7969343744740973`*^9, 3.796934406094825*^9}, {3.7969356439797907`*^9, 
+   3.7969356714266157`*^9}},
+ CellLabel->"In[76]:=",ExpressionUUID->"8ed299cd-db3f-4a9b-beda-4fbe3e179cb9"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`matrix$$ = 
+    "{{0,-1},{1,0}}", $CellContext`points$$ = {{2, 
+    3}, {-1, -3}}, $CellContext`r$$ = 8, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`r$$], 8, "Zoom"}, 0.2, 30}, {{
+       Hold[$CellContext`points$$], {{2, 3}, {-1, -3}}}, Automatic}, {{
+       Hold[$CellContext`matrix$$], "{{0,-1},{1,0}}", 
+       "Transformation Matrix"}, InputField[#, String]& }, {{
+       Hold[$CellContext`matrix$$], "{{0,-1},{1,0}}", "Examples"}, {
+      "{{Cos[\[Pi]/6],-Sin[\[Pi]/6]},{Sin[\[Pi]/6],Cos[\[Pi]/6]}}" -> 
+       "Rotate 30 Degrees", "{{2,0},{0,2}}" -> "Double", "{{-1,0},{0,1}}" -> 
+       "Reflection around Y-Axis", "{{1,0},{0,-1}}" -> 
+       "Reflection around X-Axis", "{{1,1.5},{0,1}}" -> "Sheering"}}}, 
+    Typeset`size$$ = {749., {402., 410.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`r$259824$$ = 0, $CellContext`matrix$259825$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`matrix$$ = 
+        "{{0,-1},{1,0}}", $CellContext`points$$ = {{2, 
+         3}, {-1, -3}}, $CellContext`r$$ = 8}, "ControllerVariables" :> {
+        Hold[$CellContext`r$$, $CellContext`r$259824$$, 0], 
+        Hold[$CellContext`matrix$$, $CellContext`matrix$259825$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Column[{
+         Style[
+          Row[{
+            Style[
+             MatrixForm[
+              ToExpression[$CellContext`matrix$$]]], 
+            MatrixForm[
+             Transpose[$CellContext`points$$]], "=", 
+            MatrixForm[
+             Dot[
+              ToExpression[$CellContext`matrix$$], 
+              Transpose[$CellContext`points$$]]]}], FontSize -> 20], 
+         Row[{
+           Show[
+            Graphics[{Thick, 
+              Map[Tooltip[
+                Arrow[{{0, 0}, #}]]& , $CellContext`points$$], {Dotted, Red, 
+               Map[Tooltip[
+                 Arrow[{{0, 0}, 
+                   Dot[
+                    
+                    ToExpression[$CellContext`matrix$$], #]}]]& , \
+$CellContext`points$$]}}, Axes -> True, GridLines -> Automatic, 
+             GridLinesStyle -> Directive[Gray, Dashed], ImageSize -> Large, 
+             PlotRange -> $CellContext`r$$]]}]}], 
+      "Specifications" :> {{{$CellContext`r$$, 8, "Zoom"}, 0.2, 
+         30}, {{$CellContext`points$$, {{2, 3}, {-1, -3}}}, Automatic, 
+         ControlType -> Locator, LocatorAutoCreate -> 
+         True}, {{$CellContext`matrix$$, "{{0,-1},{1,0}}", 
+          "Transformation Matrix"}, 
+         InputField[#, String]& }, {{$CellContext`matrix$$, "{{0,-1},{1,0}}", 
+          "Examples"}, {
+         "{{Cos[\[Pi]/6],-Sin[\[Pi]/6]},{Sin[\[Pi]/6],Cos[\[Pi]/6]}}" -> 
+          "Rotate 30 Degrees", "{{2,0},{0,2}}" -> "Double", "{{-1,0},{0,1}}" -> 
+          "Reflection around Y-Axis", "{{1,0},{0,-1}}" -> 
+          "Reflection around X-Axis", "{{1,1.5},{0,1}}" -> "Sheering"}}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{820., {493., 501.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7969307394110236`*^9, 3.796930781235211*^9, 3.79693097426115*^9, {
+   3.796932646712555*^9, 3.7969326542147894`*^9}, {3.7969327774403524`*^9, 
+   3.796932800670107*^9}, {3.796932871068863*^9, 3.796932894596143*^9}, {
+   3.7969330041991806`*^9, 3.7969330122774773`*^9}, 3.7969330975894127`*^9, 
+   3.796933160056501*^9, {3.7969340723841476`*^9, 3.7969341007597413`*^9}, 
+   3.7969341536035357`*^9, {3.796934356667843*^9, 3.7969344238354464`*^9}, 
+   3.7969345231689253`*^9, 3.796935435322385*^9, {3.7969355598960915`*^9, 
+   3.7969355651640377`*^9}, 3.796935695938733*^9},
+ CellLabel->"Out[76]=",ExpressionUUID->"ff3639ad-0295-455d-9400-9b0997e9e4c2"]
+}, Open  ]],
+
+Cell["\<\
+Any 2D matrix can be inputted using standard Mathematica list notation {{row1 \
+elem1, row1 elem2},{row2 elem1,row2 elem2}}.
+The model will display the resulting vectors in red. \
+\>", "Text",
+ CellChangeTimes->{{3.7969339100889378`*^9, 
+  3.7969339845587544`*^9}},ExpressionUUID->"59856c8d-e1e8-40c7-b958-\
+61d11dc93d2a"]
+},
+WindowSize->{1620, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.3 Inherited,
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 320, 10, 141, "Text",ExpressionUUID->"8563cebc-ad38-46d5-b984-342dd6503a97"],
+Cell[881, 32, 210, 4, 88, "Input",ExpressionUUID->"4465c153-4566-47a3-865b-d6892acd720c"],
+Cell[1094, 38, 531, 9, 73, "Text",ExpressionUUID->"b4a94bc4-de99-48ff-b28f-cd4d99b84130"],
+Cell[CellGroupData[{
+Cell[1650, 51, 7354, 159, 1188, "Input",ExpressionUUID->"8ed299cd-db3f-4a9b-beda-4fbe3e179cb9"],
+Cell[9007, 212, 4573, 89, 1052, "Output",ExpressionUUID->"ff3639ad-0295-455d-9400-9b0997e9e4c2"]
+}, Open  ]],
+Cell[13595, 304, 332, 7, 73, "Text",ExpressionUUID->"59856c8d-e1e8-40c7-b958-61d11dc93d2a"]
+}
+]
+*)
+
